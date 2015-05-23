@@ -1,0 +1,27 @@
+{
+  "name": "interjacent-website",
+  "version": "0.0.1",
+  "authors": [
+    "IamEmpty <dustonroad@gmail.com>"
+  ],
+  "description": "Website for interjacent front-end framework",
+  "main": "README.md",
+  "keywords": [
+    "Jade",
+    "Stylus",
+    "Js"
+  ],
+  "license": "MIT",
+  "homepage": "interjacent-website.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "axshare-nav": "*",
+    "interjacent": "*"
+  }
+}

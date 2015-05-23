@@ -1,0 +1,35 @@
+{
+  "name": "interjacent-website",
+  "version": "0.0.1",
+  "description": "Website for interjacent front-end framework",
+  "main": "README.md",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IamEmpty/interjacent-website.git"
+  },
+  "keywords": [
+    "jade",
+    "stylus"
+  ],
+  "author": "IamEmpty",
+  "license": "MIT",
+  "dependencies": {
+    "bower": "^1.4.1",
+    "express": "^4.12.3",
+    "jade": "^1.9.2",
+    "stylus": "^0.50.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-connect": "*",
+    "gulp-jade": "*",
+    "gulp-open": "*",
+    "gulp-plumber": "*",
+    "gulp-stylus": "^2.0.1",
+    "gulp.spritesmith": "*",
+    "nib": "^1.1.0"
+  }
+}
