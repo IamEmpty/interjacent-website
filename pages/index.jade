@@ -17,21 +17,21 @@ block content
         - var buttons = []
           - buttons[0] = {}
             - buttons[0].value = 'Button'
-        include /bower_components/dellin-buttons/buttons
+        include /bower_components/interjacent/blocks/buttons/buttons
 
       .framework__col-xs-12.framework__col-xs_landscape-6.framework__col-md-3
         - var buttons = []
           - buttons[0] = {}
             - buttons[0].value = 'Default button'
             - buttons[0].cssClass = 'block-button_default'
-        include /bower_components/dellin-buttons/buttons
+        include /bower_components/interjacent/blocks/buttons/buttons
 
       .framework__col-xs-12.framework__col-xs_landscape-6.framework__col-md-3
         - var buttons = []
           - buttons[0] = {}
             - buttons[0].value = 'Primary button'
             - buttons[0].cssClass = 'block-button_primary'
-        include /bower_components/dellin-buttons/buttons
+        include /bower_components/interjacent/blocks/buttons/buttons
 
       .framework__col-xs-12.framework__col-xs_landscape-6.framework__col-md-3
         - var buttons = []
@@ -39,7 +39,7 @@ block content
             - buttons[0].value = 'Disabled button'
             - buttons[0].cssClass = 'block-button_default'
             - buttons[0].disabled = true
-        include /bower_components/dellin-buttons/buttons
+        include /bower_components/interjacent/blocks/buttons/buttons
 
     pre.framework__pre
       code.html.framework__code
@@ -59,7 +59,7 @@ block content
         - tabButtons = []
           - tabButtons.chosen = 0
           - tabButtons.array = [ 'Active tab button', 'Tab button' ]
-        include /bower_components/dellin-forms/_tab-buttons/tab-buttons
+        include /bower_components/interjacent/blocks/forms/_tab-buttons/tab-buttons
 
     pre.framework__pre
       code.html.framework__code
@@ -81,14 +81,15 @@ block content
           - inputs.fieldWrapperClass = 'forms__input-list'
           - inputs.array = [ '' ]
 
-        include /bower_components/dellin-forms/_inputs/inputs
+        include /bower_components/interjacent/blocks/forms/_inputs/inputs
+
 
         - inputs = {}
           - inputs.placeholder = 'Placeholder'
           - inputs.fieldWrapperClass = 'forms__input-list'
           - inputs.array = [ 'Input filled' ]
 
-        include /bower_components/dellin-forms/_inputs/inputs
+        include /bower_components/interjacent/blocks/forms/_inputs/inputs
 
         - inputs = {}
           - inputs.placeholder = 'Placeholder'
@@ -96,7 +97,7 @@ block content
           - inputs.fieldWrapperClass = 'forms__input-list'
           - inputs.added = true
 
-        include /bower_components/dellin-forms/_inputs/inputs
+        include /bower_components/interjacent/blocks/forms/_inputs/inputs
 
       .framework__col-xs-12.framework__col-xs_landscape-6.framework__col-md-4.framework__col-lg-3
 
@@ -108,7 +109,7 @@ block content
           - inputs.fieldWrapperClass = 'forms__input-list'
           - inputs.array = [ '' ]
 
-        include /bower_components/dellin-forms/_inputs/inputs
+        include /bower_components/interjacent/blocks/forms/_inputs/inputs
 
         - inputs = {}
           - inputs.placeholder = 'Placeholder'
@@ -116,7 +117,7 @@ block content
           - inputs.fieldWrapperClass = 'forms__input-list'
           - inputs.array = [ 'Input filled' ]
 
-        include /bower_components/dellin-forms/_inputs/inputs
+        include /bower_components/interjacent/blocks/forms/_inputs/inputs
 
         - inputs = {}
           - inputs.placeholder = 'Placeholder'
@@ -125,7 +126,7 @@ block content
           - inputs.fieldClass = 'input-type-text_error'
           - inputs.added = true
 
-        include /bower_components/dellin-forms/_inputs/inputs
+        include /bower_components/interjacent/blocks/forms/_inputs/inputs
 
 
       .framework__col-xs-12.framework__col-xs_landscape-6.framework__col-md-4.framework__col-lg-3
@@ -138,7 +139,7 @@ block content
           - inputs.fieldWrapperClass = 'forms__input-list'
           - inputs.array = [ '' ]
 
-        include /bower_components/dellin-forms/_inputs/inputs
+        include /bower_components/interjacent/blocks/forms/_inputs/inputs
 
         - inputs = {}
           - inputs.placeholder = 'Placeholder'
@@ -146,7 +147,7 @@ block content
           - inputs.fieldWrapperClass = 'forms__input-list'
           - inputs.array = [ 'Input filled' ]
 
-        include /bower_components/dellin-forms/_inputs/inputs
+        include /bower_components/interjacent/blocks/forms/_inputs/inputs
 
         - inputs = {}
           - inputs.placeholder = 'Placeholder'
@@ -156,7 +157,7 @@ block content
           - inputs.added = true
           - inputs.disabled = true
 
-        include /bower_components/dellin-forms/_inputs/inputs
+        include /bower_components/interjacent/blocks/forms/_inputs/inputs
 
 
     pre.framework__pre
@@ -185,7 +186,7 @@ block content
           - select.fieldWrapperClass = 'forms__input-list'
           - select.array = [ 'First', 'Second', 'Very long text, displayed in one line. If you will calculate the amount of letters' ]
 
-        include /bower_components/dellin-forms/_select/select
+        include /bower_components/interjacent/blocks/forms/_select/select
 
         - select = {}
           - select.placeholder = 'choose from the list'
@@ -193,7 +194,7 @@ block content
           - select.fieldWrapperClass = 'forms__input-list'
           - select.array = [ 'First', 'Second', 'Very long text, displayed in one line. If you will calculate the amount of letters' ]
 
-        include /bower_components/dellin-forms/_select/select
+        include /bower_components/interjacent/blocks/forms/_select/select
 
 
       .framework__col-xs-12.framework__col-xs_landscape-6.framework__col-md-4.framework__col-lg-3
@@ -206,7 +207,7 @@ block content
           - select.fieldClass = 'select_error'
           - select.array = [ 'First', 'Second', 'Very long text, displayed in one line. If you will calculate the amount of letters' ]
 
-        include /bower_components/dellin-forms/_select/select
+        include /bower_components/interjacent/blocks/forms/_select/select
 
         - select = {}
           - select.placeholder = 'choose from the list'
@@ -215,7 +216,7 @@ block content
           - select.fieldClass = 'select_error'
           - select.array = [ 'First', 'Second', 'Very long text, displayed in one line. If you will calculate the amount of letters' ]
 
-        include /bower_components/dellin-forms/_select/select
+        include /bower_components/interjacent/blocks/forms/_select/select
 
 
       .framework__col-xs-12.framework__col-xs_landscape-6.framework__col-md-4.framework__col-lg-3
@@ -227,7 +228,7 @@ block content
           - select.fieldWrapperClass = 'forms__input-list'
           - select.array = [ 'First', 'Second', 'Very long text, displayed in one line. If you will calculate the amount of letters' ]
 
-        include /bower_components/dellin-forms/_select/select
+        include /bower_components/interjacent/blocks/forms/_select/select
 
         - select = {}
           - select.placeholder = 'choose from the list'
@@ -235,7 +236,7 @@ block content
           - select.chosen = 2
           - select.array = [ 'First', 'Second', 'Very long text, displayed in one line. If you will calculate the amount of letters' ]
 
-        include /bower_components/dellin-forms/_select/select
+        include /bower_components/interjacent/blocks/forms/_select/select
 
 
     pre.framework__pre
@@ -312,7 +313,8 @@ block content
 
               - forms.elements[0].children[2] = line
 
-        include /bower_components/dellin-forms/forms
+        include /bower_components/interjacent/blocks/forms/forms
+
     pre.framework__pre
       code.html.framework__code
         .framework__row_code
