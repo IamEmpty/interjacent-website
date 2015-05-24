@@ -3,7 +3,6 @@ var gulp = require('gulp'),
 	spritesmith = require('gulp.spritesmith'),
 	jade = require('gulp-jade'),
 	connect = require('gulp-connect'),
-	open = require('gulp-open'),
 	stylus = require('gulp-stylus');
 
 
@@ -113,18 +112,6 @@ gulp.task( 'connect', function() {
 });
 
 
-// Open URL
-gulp.task( 'open-url', function() {
-
-	var options = {
-		url: 'http://localhost:8889/',
-		app: 'google-chrome'
-	};
-
-	gulp.src( 'build' )
-		.pipe(open( '', options ));
-});
-
-
 gulp.task( 'build', [ 'html', 'css', 'copy' ] );
+gulp.task( 'dist', [ 'html-min', 'css-min', 'copy-min' ] );
 gulp.task( 'default', [ 'build', 'connect', 'watch', 'open-url' ] );
