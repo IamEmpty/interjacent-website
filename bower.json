@@ -21,7 +21,6 @@
     "tests"
   ],
   "dependencies": {
-    "axshare-nav": "*",
     "interjacent": "*"
   }
 }
