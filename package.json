@@ -19,13 +19,16 @@
   "dependencies": {
     "bower": "^1.4.1",
     "express": "^4.12.3",
+    "html": "0.0.10",
     "jade": "^1.9.2",
     "stylus": "^0.50.0"
   },
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-connect": "*",
+    "gulp-gh-pages": "^0.5.1",
     "gulp-jade": "*",
+    "gulp-minify-html": "^1.0.2",
     "gulp-open": "*",
     "gulp-plumber": "*",
     "gulp-stylus": "^2.0.1",

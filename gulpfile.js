@@ -3,7 +3,9 @@ var gulp = require('gulp'),
 	spritesmith = require('gulp.spritesmith'),
 	jade = require('gulp-jade'),
 	connect = require('gulp-connect'),
-	stylus = require('gulp-stylus');
+	stylus = require('gulp-stylus'),
+	minifyHTML = require('gulp-minify-html'),
+	ghPages = require('gulp-gh-pages');
 
 
 var paths = {
@@ -27,7 +29,8 @@ var paths = {
 		'bower_components/bem-dellin-blocks-library/block-forms/**/*.gif',
 		'bower_components/dellin-pages/static/**/**/icon-sprite.png'
 	],
-	build: 'build/'
+	build: 'build/',
+	dist: 'dist/'
 };
 
 
@@ -95,6 +98,18 @@ gulp.task( 'sprite', function() {
 });
 
 
+// Optimization tasks
+gulp.task( 'html-min', function() {
+	gulp.src( paths.jade )
+		.pipe(plumber())
+		.pipe(jade({
+			basedir: './'
+		}))
+		.pipe(minifyHTML())
+		.pipe(gulp.dest( paths.dist ));
+});
+
+
 // Rerun the task when a file changes
 gulp.task( 'watch', function() {
 	gulp.watch( paths.jadeWatch, [ 'html' ]);
@@ -112,6 +127,12 @@ gulp.task( 'connect', function() {
 });
 
 
+// Deploy to GitHub pages
+gulp.task( 'deploy', [ 'dist' ], function() {
+  gulp.src( paths.dist + '/**/*' )
+    .pipe(ghPages());
+});
+
 gulp.task( 'build', [ 'html', 'css', 'copy' ] );
-gulp.task( 'dist', [ 'html-min', 'css-min', 'copy-min' ] );
-gulp.task( 'default', [ 'build', 'connect', 'watch', 'open-url' ] );
+gulp.task( 'dist', [ 'html-min' ] );
+gulp.task( 'default', [ 'build', 'connect', 'watch' ] );
