@@ -15,7 +15,7 @@ var paths = {
 	stylusWatch: [ 'stylesheets/**/*.styl', 'bem-blocks/**/**/*.styl', 'bower_components/**/**/**/*.styl' ],
 	copyCss: [ 'bower_components/normalize.css/normalize.css' ],
 	copyJs: [
-		'bem-blocks/**/js/*.js',
+		'blocks/code/js/*.js',
 		'bower_components/jquery/dist/jquery.min.js',
 		'bower_components/bem-dellin-blocks-library/block-forms/js/*.js',
 		'bower_components/angular/angular.min.js',
