@@ -1,6 +1,6 @@
 {
   "name": "interjacent-website",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Website for interjacent front-end framework",
   "main": "README.md",
   "scripts": {

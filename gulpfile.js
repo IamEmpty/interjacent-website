@@ -24,10 +24,9 @@ var paths = {
 	],
 	copyStatic: [
 		'static/**/**/**/*.{png,jpg,gif}',
-		'/static/**/*.{eot,svg,ttf,woff,woff2}',
+		'static/**/*.{eot,svg,ttf,woff,woff2}',
 		'bower_components/axshare-nav/**/*.{ttf,woff,eof,svg,eot}',
-		'bower_components/bem-dellin-blocks-library/block-forms/**/*.gif',
-		'bower_components/dellin-pages/static/**/**/icon-sprite.png'
+		'bower_components/interjacent/static/**/**/icon-sprite.png'
 	],
 	build: 'build/',
 	dist: 'dist/'
