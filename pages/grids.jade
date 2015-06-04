@@ -3,49 +3,37 @@
     h2 Grids
   .framework__col-xs-12
     h3 col-md grid
+    h4 .col-md-1
     .row
       .col-md-1.colorful-cube
-        p.colorful-cube__text .col-md-1
-      .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
-    .row
+        .colorful-cube_content 1
       .col-md-2.colorful-cube
-        p.colorful-cube__text .col-md-2
+        .colorful-cube_content 2
+      .col-md-3.colorful-cube
+        .colorful-cube_content 3
+      .col-md-4.colorful-cube
+        .colorful-cube_content 4
+      .col-md-2.colorful-cube
+        .colorful-cube_content 5
+    h4 .col-md-2
+    .row
+      .col-md-5.colorful-cube
+        .colorful-cube_content
+      .col-md-6.colorful-cube
+        .colorful-cube_content
       .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
+        .colorful-cube_content
+    h4 .col-md-3
     .row
       .col-md-3.colorful-cube
-        p.colorful-cube__text .col-md-3
-      .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
-      .col-md-1.colorful-cube
+        .colorful-cube_content
+      each val in ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+        .col-md-1.colorful-cube
+          .colorful-cube_content
     h3 col-alt-grid
     .row
       .col-alt-1.colorful-cube
-        p.colorful-cube__text .col-alt-1
+        .colorful-cube_content
       .col-alt-1.colorful-cube
       .col-alt-1.colorful-cube
       .col-alt-1.colorful-cube

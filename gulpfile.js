@@ -12,7 +12,7 @@ var paths = {
 	jade: [ 'pages/**/**/*.jade' ],
 	jadeWatch: [ 'bem-blocks/**/**/*.jade', 'pages/**/**/*.jade', 'includes/**/**/*.jade', 'layouts/**/**/*.jade', 'bower_components/**/**/*.jade' ],
 	stylus: [ 'stylesheets/main.styl' ],
-	stylusWatch: [ 'stylesheets/**/*.styl', 'bem-blocks/**/**/*.styl', 'bower_components/**/**/**/*.styl' ],
+	stylusWatch: [ 'stylesheets/**/*.styl', 'blocks/**/**/*.styl', 'bower_components/**/**/**/*.styl' ],
 	copyCss: [ 'bower_components/normalize.css/normalize.css' ],
 	copyJs: [
 		'blocks/code/js/*.js',

@@ -8,55 +8,53 @@
     width 1170px
     margin 0 auto
 
-
 .framework__row
-  margin: 0 -15px
-
+  margin 0 -15px
   &:after
-    content: " "
-    clear: both
-    display: table
+    content " "
+    clear both
+    display table
 
 
 // 16 column grid system
 for num in (1..12)
   .framework__col-xs-{num}
-    float: left
-    width: (100% / 12 * num)
-    padding: 0 15px
-    box-sizing: border-box
-    min-height: 1px
-    position: relative
+    float left
+    width (100% / 12 * num)
+    padding 0 15px
+    box-sizing border-box
+    min-height 1px
+    position relative
 
 // 16 column grid system
 for num in (1..12)
   @media (min-width: 592px) // Width in landscape orientation of Nexus 5
     .framework__col-xs_landscape-{num}
-      float: left
-      width: (100% / 12 * num)
-      padding: 0 15px
-      box-sizing: border-box
-      min-height: 1px
-      position: relative
+      float left
+      width (100% / 12 * num)
+      padding 0 15px
+      box-sizing border-box
+      min-height 1px
+      position relative
 
 // 16 column grid system
 for num in (1..12)
   @media (min-width: 970px)
     .framework__col-md-{num}
-      float: left
-      width: (100% / 12 * num)
-      padding: 0 15px
-      box-sizing: border-box
-      min-height: 1px
-      position: relative
+      float left
+      width (100% / 12 * num)
+      padding 0 15px
+      box-sizing border-box
+      min-height 1px
+      position relative
 
 // 16 column grid system
 for num in (1..12)
   @media (min-width: 1240px)
     .framework__col-lg-{num}
-      float: left
-      width: (100% / 12 * num)
-      padding: 0 15px
-      box-sizing: border-box
-      min-height: 1px
-      position: relative
+      float left
+      width (100% / 12 * num)
+      padding 0 15px
+      box-sizing border-box
+      min-height 1px
+      position relative
