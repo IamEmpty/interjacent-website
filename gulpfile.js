@@ -5,6 +5,8 @@ var gulp = require('gulp'),
   connect = require('gulp-connect'),
   stylus = require('gulp-stylus'),
   minifyHTML = require('gulp-minify-html'),
+  minifyCss = require('gulp-minify-css'),
+  htmlreplace = require('gulp-html-replace'),
   ghPages = require('gulp-gh-pages');
 
 
@@ -98,15 +100,46 @@ gulp.task( 'sprite', function() {
 
 
 // Optimization tasks
+
+// Html minification
 gulp.task( 'html-min', function() {
   gulp.src( paths.jade )
     .pipe(plumber())
     .pipe(jade({
       basedir: './'
     }))
+    .pipe(htmlreplace({
+      'css': 'styles.min.css'
+    }))
     .pipe(minifyHTML())
     .pipe(gulp.dest( paths.dist ));
 });
+
+// CSS minification
+gulp.task('minify-css', function() {
+  gulp.src( paths.stylus )
+    .pipe(stylus({
+      'include css': true
+    }))
+    .pipe(minifyCss())
+    .pipe(gulp.dest( paths.dist + 'css/' ));
+});
+
+// Copy files into dist folder
+gulp.task( 'copy-to-dist', [ 'copy-js-to-dist', 'copy-static-to-dist' ]);
+
+  // Copy javascript files into development build folder
+  gulp.task( 'copy-js-to-dist', function() {
+    gulp.src( paths.copyJs )
+      .pipe(plumber())
+      .pipe(gulp.dest( paths.dist + 'js/' ));
+  });
+
+  // Copy files from static into development build folder
+  gulp.task( 'copy-static-to-dist', function() {
+    gulp.src( paths.copyStatic )
+      .pipe(gulp.dest( paths.dist ));
+  });
 
 
 // Rerun the task when a file changes
@@ -133,5 +166,5 @@ gulp.task( 'deploy', [ 'dist' ], function() {
 });
 
 gulp.task( 'build', [ 'html', 'css', 'copy' ] );
-gulp.task( 'dist', [ 'html-min' ] );
+gulp.task( 'dist', [ 'html-min', 'minify-css', 'copy' ] );
 gulp.task( 'default', [ 'build', 'connect', 'watch' ] );
