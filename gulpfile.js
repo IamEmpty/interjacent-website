@@ -8,7 +8,6 @@ var gulp = require('gulp'),
   minifyCss = require('gulp-minify-css'),
   htmlreplace = require('gulp-html-replace'),
   rename = require("gulp-rename"),
-  inlineCss = require('gulp-inline-css'),
   ghPages = require('gulp-gh-pages');
 
 
