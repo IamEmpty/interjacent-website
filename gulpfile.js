@@ -99,7 +99,7 @@ gulp.task( 'sprite', function() {
 
 // Html minification
 gulp.task( 'html-min', function() {
-  gulp.src( paths.jade )
+  return gulp.src( paths.jade )
     .pipe(plumber())
     .pipe(jade({
       basedir: './'
@@ -113,7 +113,7 @@ gulp.task( 'html-min', function() {
 
 // CSS minification
 gulp.task( 'minify-css', function() {
-  gulp.src( paths.stylus )
+  return gulp.src( paths.stylus )
     .pipe(stylus({
       'include css': true
     }))
