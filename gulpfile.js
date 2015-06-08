@@ -105,7 +105,7 @@ gulp.task( 'html-min', function() {
       basedir: './'
     }))
     .pipe(htmlreplace({
-      'css': 'css/main.css'
+      'css': 'css/main.min.css'
     }))
     .pipe(minifyHTML())
     .pipe(gulp.dest( paths.dist ));
@@ -118,7 +118,7 @@ gulp.task( 'minify-css', function() {
       'include css': true
     }))
     .pipe(minifyCss())
-    // .pipe(rename('main.css'))
+    .pipe(rename('main.min.css'))
     .pipe(gulp.dest( paths.dist + 'css/' ));
 });
 
