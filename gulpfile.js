@@ -7,6 +7,7 @@ var gulp = require('gulp'),
   minifyHTML = require('gulp-minify-html'),
   minifyCss = require('gulp-minify-css'),
   htmlreplace = require('gulp-html-replace'),
+  rename = require("gulp-rename"),
   ghPages = require('gulp-gh-pages');
 
 
@@ -18,11 +19,11 @@ var paths = {
   copyCss: [ 'bower_components/normalize.css/normalize.css' ],
   copyJs: [
     'blocks/code/js/*.js',
-    'bower_components/jquery/dist/jquery.min.js',
-    'bower_components/bem-dellin-blocks-library/block-forms/js/*.js',
-    'bower_components/angular/angular.min.js',
-    'bower_components/angular/angular.min.js.map',
-    'bower_components/dellin-forms/_label/js/forms__label.js'
+    // 'bower_components/jquery/dist/jquery.min.js',
+    // 'bower_components/bem-dellin-blocks-library/block-forms/js/*.js',
+    // 'bower_components/angular/angular.min.js',
+    // 'bower_components/angular/angular.min.js.map',
+    // 'bower_components/dellin-forms/_label/js/forms__label.js'
   ],
   copyStatic: [
     'static/**/**/**/*.{png,jpg,gif}',
@@ -109,7 +110,7 @@ gulp.task( 'html-min', function() {
       basedir: './'
     }))
     .pipe(htmlreplace({
-      'css': 'styles.min.css'
+      'css': 'css/main.min.css'
     }))
     .pipe(minifyHTML())
     .pipe(gulp.dest( paths.dist ));
@@ -122,6 +123,7 @@ gulp.task('minify-css', function() {
       'include css': true
     }))
     .pipe(minifyCss())
+    .pipe(rename('main.min.css'))
     .pipe(gulp.dest( paths.dist + 'css/' ));
 });
 
@@ -166,5 +168,5 @@ gulp.task( 'deploy', [ 'dist' ], function() {
 });
 
 gulp.task( 'build', [ 'html', 'css', 'copy' ] );
-gulp.task( 'dist', [ 'html-min', 'minify-css', 'copy' ] );
+gulp.task( 'dist', [ 'html-min', 'minify-css', 'copy-to-dist' ] );
 gulp.task( 'default', [ 'build', 'connect', 'watch' ] );

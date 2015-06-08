@@ -33,6 +33,7 @@
     "gulp-minify-html": "^1.0.2",
     "gulp-open": "*",
     "gulp-plumber": "*",
+    "gulp-rename": "^1.2.2",
     "gulp-stylus": "^2.0.1",
     "gulp.spritesmith": "*",
     "nib": "^1.1.0"
