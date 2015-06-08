@@ -8,22 +8,18 @@ var gulp = require('gulp'),
   minifyCss = require('gulp-minify-css'),
   htmlreplace = require('gulp-html-replace'),
   rename = require("gulp-rename"),
+  inlineCss = require('gulp-inline-css'),
   ghPages = require('gulp-gh-pages');
 
 
 var paths = {
-  jade: [ 'pages/**/**/*.jade' ],
+  jade: [ 'pages/index.jade' ],
   jadeWatch: [ 'bem-blocks/**/**/*.jade', 'pages/**/**/*.jade', 'includes/**/**/*.jade', 'layouts/**/**/*.jade', 'bower_components/**/**/*.jade' ],
   stylus: [ 'stylesheets/main.styl' ],
   stylusWatch: [ 'stylesheets/**/*.styl', 'blocks/**/**/*.styl', 'bower_components/**/**/**/*.styl' ],
   copyCss: [ 'bower_components/normalize.css/normalize.css' ],
   copyJs: [
-    'blocks/code/js/*.js',
-    // 'bower_components/jquery/dist/jquery.min.js',
-    // 'bower_components/bem-dellin-blocks-library/block-forms/js/*.js',
-    // 'bower_components/angular/angular.min.js',
-    // 'bower_components/angular/angular.min.js.map',
-    // 'bower_components/dellin-forms/_label/js/forms__label.js'
+    'blocks/code/js/*.js'
   ],
   copyStatic: [
     'static/**/**/**/*.{png,jpg,gif}',
@@ -117,7 +113,7 @@ gulp.task( 'html-min', function() {
 });
 
 // CSS minification
-gulp.task('minify-css', function() {
+gulp.task( 'minify-css', function() {
   gulp.src( paths.stylus )
     .pipe(stylus({
       'include css': true
@@ -163,7 +159,7 @@ gulp.task( 'connect', function() {
 
 // Deploy to GitHub pages
 gulp.task( 'deploy', [ 'dist' ], function() {
-  gulp.src( paths.dist + '/**/*' )
+  gulp.src( paths.dist + '/**/*.*' )
     .pipe(ghPages());
 });
 

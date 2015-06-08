@@ -15,10 +15,10 @@ If haven't install it
 
 ## Step 2
 
-    cd interjacent
+    cd interjacent-website
     npm install
     bower install
-    gulp
+    gulp dist
 
 ## Notes
 All styles use with normalize.css
@@ -29,6 +29,9 @@ All styles use with normalize.css
 
 ## File structure
 
-    .idea/
     app
-    bem-blocks
+    blocks
+    includes
+    layouts
+    pages
+    stylesheets

@@ -20,7 +20,7 @@
     "bower": "^1.4.1",
     "express": "^4.12.3",
     "html": "0.0.10",
-    "jade": "^1.9.2",
+    "jade": "^1.10.0",
     "stylus": "^0.50.0"
   },
   "devDependencies": {
@@ -28,6 +28,7 @@
     "gulp-connect": "*",
     "gulp-gh-pages": "^0.5.1",
     "gulp-html-replace": "^1.5.0",
+    "gulp-inline-css": "^2.0.0",
     "gulp-jade": "*",
     "gulp-minify-css": "^1.1.6",
     "gulp-minify-html": "^1.0.2",
