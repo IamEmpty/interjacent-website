@@ -158,7 +158,7 @@ gulp.task( 'connect', function() {
 
 // Deploy to GitHub pages
 gulp.task( 'deploy', [ 'dist' ], function() {
-  gulp.src( paths.dist + '/**/*.*' )
+  return gulp.src( paths.dist + '/**/*.*' )
     .pipe(ghPages());
 });
 
