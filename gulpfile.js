@@ -8,6 +8,7 @@ var gulp = require('gulp'),
   minifyCss = require('gulp-minify-css'),
   htmlreplace = require('gulp-html-replace'),
   rename = require("gulp-rename"),
+  inlinesource = require('gulp-inline-source'),
   ghPages = require('gulp-gh-pages');
 
 
@@ -161,6 +162,7 @@ gulp.task( 'deploy', [ 'dist' ], function() {
   return gulp.src( paths.dist + '/**/*.*' )
     .pipe(ghPages());
 });
+
 
 gulp.task( 'build', [ 'html', 'css', 'copy' ] );
 gulp.task( 'dist', [ 'html-min', 'minify-css', 'copy-to-dist' ] );
