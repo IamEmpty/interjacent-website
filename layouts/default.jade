@@ -12,10 +12,13 @@ html(lang= 'en')
               a.framework-logotype__link(href= '#') Interjacent framework
         .framework__row
           .framework__col-xs-12
-            nav.main-nav
-              a.main-nav__item(href= '#')
+            | Current version v0.0.2
+        .framework__row
+          .framework__col-xs-12
+            include /blocks/main-nav/main-nav
 
-    block content
+    .framework__container
+      block content
 
     footer.footer
       include /blocks/footer/footer

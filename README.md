@@ -1,4 +1,4 @@
-interjacent front-end framework
+Website for interjacent front-end framework
 ==========================
 
 ## If you have no Node.js, Bower or Gulp
@@ -13,7 +13,7 @@ If haven't install it
     npm config set prefix ~/npm
     export PATH="$PATH:$HOME/npm/bin"
 
-## Step 2
+## Step 3
 
     cd interjacent-website
     npm install
@@ -29,7 +29,6 @@ All styles use with normalize.css
 
 ## File structure
 
-    app
     blocks
     includes
     layouts
