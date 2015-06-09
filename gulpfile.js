@@ -8,8 +8,9 @@ var gulp = require('gulp'),
   minifyCss = require('gulp-minify-css'),
   htmlreplace = require('gulp-html-replace'),
   rename = require("gulp-rename"),
-  inlinesource = require('gulp-inline-source'),
-  ghPages = require('gulp-gh-pages');
+  ghPages = require('gulp-gh-pages'),
+  replace = require('gulp-replace'),
+  fs = require('fs');
 
 
 var paths = {
@@ -107,6 +108,10 @@ gulp.task( 'html-min', function() {
     }))
     .pipe(htmlreplace({
       'css': 'css/main.min.css'
+    }))
+    .pipe(replace(/<link rel="stylesheet" href="css\/main.min.css">/, function(s) {
+      var style = fs.readFileSync('dist/css/main.min.css', 'utf8');
+      return '<style>\n' + style + '\n</style>';
     }))
     .pipe(minifyHTML())
     .pipe(gulp.dest( paths.dist ));
