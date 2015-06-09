@@ -97,7 +97,7 @@ gulp.task( 'sprite', function() {
 });
 
 
-// Optimization tasks
+// Perfomance optimization tasks
 
 // Html minification
 gulp.task( 'html-min', function() {
@@ -109,6 +109,7 @@ gulp.task( 'html-min', function() {
     .pipe(htmlreplace({
       'css': 'css/main.min.css'
     }))
+    // Css from file to inline
     .pipe(replace(/<link rel="stylesheet" href="css\/main.min.css">/, function(s) {
       var style = fs.readFileSync('dist/css/main.min.css', 'utf8');
       return '<style>\n' + style + '\n</style>';
