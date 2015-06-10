@@ -2,7 +2,7 @@
   margin 0 auto
   padding 0 15px
 
-@media (min-width: 1240px)
+@media (min-width 1240px)
   .framework__container
     width 1170px
     margin 0 auto
@@ -26,7 +26,7 @@ for num in (1..12)
 
 // 16 column grid system
 for num in (1..12)
-  @media (min-width: 592px) // Width in landscape orientation of Nexus 5
+  @media (min-width 592px) // Width in landscape orientation of Nexus 5
     .framework__col-xs_landscape-{num}
       float left
       width (100% / 12 * num)
@@ -37,7 +37,7 @@ for num in (1..12)
 
 // 16 column grid system
 for num in (1..12)
-  @media (min-width: 970px)
+  @media (min-width 970px)
     .framework__col-md-{num}
       float left
       width (100% / 12 * num)
@@ -48,7 +48,7 @@ for num in (1..12)
 
 // 16 column grid system
 for num in (1..12)
-  @media (min-width: 1240px)
+  @media (min-width 1240px)
     .framework__col-lg-{num}
       float left
       width (100% / 12 * num)
@@ -56,3 +56,31 @@ for num in (1..12)
       box-sizing border-box
       min-height 1px
       position relative
+
+
+.framework__body
+  display flex
+
+.framework__aside
+  width 20%
+  background black
+  // &:before
+  //   width 20%
+  //   background black
+  //   position absolute
+  //   top 0
+  //   bottom 0
+  //   z-index -1
+  //   left 0
+  //   content ''
+
+.framework__main
+  width 80%
+  // &:before
+  //   width 20%
+  //   position absolute
+  //   left 20%
+  //   top 0
+  //   bottom 0
+  //   z-index -1
+  //   content ''

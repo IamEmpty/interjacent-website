@@ -3,22 +3,24 @@ html(lang= 'en')
   head
     include /includes/head
 
-  body
-    header
-      .framework__container
-        .framework__row
-          .framework__col-xs-12
-            h1.framework-logotype
-              a.framework-logotype__link(href= '#') Interjacent framework
-        .framework__row
-          .framework__col-xs-12
-            | Current version v0.0.2
-        .framework__row
-          .framework__col-xs-12
-            include /blocks/main-nav/main-nav
+  body.framework__body
+    aside.framework__aside
+      include /blocks/main-nav/main-nav
+    main.framework__main
+      header
+        .container
+          .framework__row
+            .framework__col-xs-12
+              h1.framework-logotype
+                a.framework-logotype__link(href= '#') Interjacent framework
+          .framework__row
+            .framework__col-xs-12
+              | Current version v0.0.3
+          .framework__row
+            .framework__col-xs-12
 
-    .framework__container
-      block content
+      .container.show-container
+        block content
 
-    footer.footer
-      include /blocks/footer/footer
+      footer.framework__footer
+        include /blocks/footer/footer
