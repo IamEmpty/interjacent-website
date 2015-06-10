@@ -34,3 +34,6 @@ All styles use with normalize.css
     layouts
     pages
     stylesheets
+
+## TODO
+- Стили для попапов
