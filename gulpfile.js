@@ -15,7 +15,7 @@ var gulp = require('gulp'),
 
 var paths = {
   jade: [ 'pages/index.jade' ],
-  jadeWatch: [ 'bem-blocks/**/**/*.jade', 'pages/**/**/*.jade', 'includes/**/**/*.jade', 'layouts/**/**/*.jade', 'bower_components/**/**/*.jade' ],
+  jadeWatch: [ 'blocks/**/**/*.jade', 'pages/**/**/*.jade', 'includes/**/**/*.jade', 'layouts/**/**/*.jade', 'bower_components/**/**/*.jade' ],
   stylus: [ 'stylesheets/main.styl' ],
   stylusWatch: [ 'stylesheets/**/*.styl', 'blocks/**/**/*.styl', 'bower_components/**/**/**/*.styl' ],
   copyCss: [ 'bower_components/normalize.css/normalize.css' ],
