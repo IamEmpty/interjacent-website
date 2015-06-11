@@ -1,0 +1,52 @@
+- var popup = {}
+- popup.show = true
+- popup.heading = {}
+  - popup.heading.cssClass = 'popup__heading_large'
+  - popup.heading.value = 'Смена адреса и времени забора груза'
+- popup.cssClass = 'popup_default'
+include /bower_components/interjacent/blocks/popups/popups
+
+  p.popup__text Отсканируйте и прикрепите необходимые документы:
+
+  .brooklin
+    - var forms = {}
+
+    - forms.buttons = {}
+      - forms.buttons[0] = {}
+         - forms.buttons[0].value = 'Отменить'
+         - forms.buttons[0].cssClass = 'button_default button_with-siblings'
+      - forms.buttons[1] = {}
+         - forms.buttons[1].value = 'Отправить запрос'
+         - forms.buttons[1].cssClass = 'button_primary button_with-siblings'
+
+    - forms.buttonsClass = 'forms__button_no-indents'
+
+    - forms.grid = []
+      - forms.grid[0] = 'forms-label-col-4'
+      - forms.grid[1] = 'forms-label-col-12'
+
+    - forms.elements = []
+
+    - forms.elements[0] = {}
+    - forms.elements[0].children = []
+
+      - forms.elements[0].children[0] = {}
+        - label = {}
+          - label.value = 'Заполненный бланк'
+          - label.required = true
+          - label.filled = true
+        - forms.elements[0].children[0].label = label
+        - forms.elements[0].children[0].items = []
+
+          - links = {}
+            - links.field = 'link'
+            - links.fieldClass = 'forms__link_dotted'
+            - links.grid = 'forms-col-24'
+            - links.chosen = 1
+            - links.array = [ 'Прикрепить скан-копию' ]
+            - links.postfix = []
+              - links.postfix[0] = {}
+                - links.postfix[0].value = 'Подходят файлы png, jpg, pdf, doc/docx/odt (до 3 мб).'
+          - forms.elements[0].children[0].items[0] = links
+
+    include /bower_components/interjacent/blocks/forms/forms
