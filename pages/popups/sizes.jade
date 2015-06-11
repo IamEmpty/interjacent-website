@@ -9,7 +9,7 @@
   button.button-reset.popup__close ×
   p.popup__text Scan and attach your documents
   form.forms
-    .form-block
+    .form-block.form-block_only
       .form-line
         .row
           .col-md-4
@@ -23,7 +23,7 @@
                   a.forms__link.forms__link_dotted(href='#') Attach scan copy
                 p.forms__hint.forms__hint-typography
                   span You can use followings formst: png, jpg, pdf, doc/docx/odt (untill 3 Mb).
-    .forms__button.forms__button_no-indents
+    .forms__button.forms__button_no-indents.popup__buttons
       button.button.button_typography.button_default.button_with-siblings(type='submit') Cancel
       button.button.button_typography.button_primary.button_with-siblings(type='submit') Send request
 //- h4 Popup with button
@@ -32,6 +32,5 @@
   button.button-reset.popup__close ×
   p.popup__text Scan and attach your documents
   p.popup__text There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
-  form.forms
-    .forms__button.forms__button_no-indents
-      button.button.button_typography.button_default.button_with-siblings(type='submit') Cancel
+  .forms__button.forms__button_no-indents.popup__buttons
+    button.button.button_typography.button_default.button_with-siblings(type='submit') Cancel
