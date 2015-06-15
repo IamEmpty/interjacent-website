@@ -38,7 +38,7 @@ gulp.task( 'html', function() {
     //only pass unchanged *main* files and *all* the partials
     .pipe(changed( paths.build, {extension: '.html'}))
     //filter out unchanged partials, but it only works when watching
-    .pipe(gulpif(global.isWatching, cached('html'))) // or jade
+    .pipe(gulpif(global.isWatching, cached('jade')))
     //find files that depend on the files that have changed
     .pipe(jadeInheritance({basedir: 'pages'}))
     //filter out partials (folders and files starting with "_" )
