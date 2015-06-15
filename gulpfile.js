@@ -25,7 +25,10 @@ var paths = {
   stylusWatch: [ 'stylesheets/**/*.styl', 'blocks/**/**/*.styl', 'bower_components/**/**/**/*.styl' ],
   copyCss: 'bower_components/normalize.css/normalize.css',
   copyJs: 'blocks/code/js/*.js',
-  copyStatic: 'bower_components/interjacent/static/**/**/icon-sprite.png',
+  copyStatic: [
+    'bower_components/interjacent/static/**/**/icon-sprite.png',
+    'blocks/header/**/*.{eot,woff,ttf,svg}'
+  ],
   build: 'build/',
   dist: 'dist/'
 };
