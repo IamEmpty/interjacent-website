@@ -36,4 +36,4 @@ All styles use with normalize.css
     stylesheets
 
 ## TODO
-- Стили для попапов
+All components of forms
