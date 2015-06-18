@@ -6,6 +6,34 @@ include /pages/forms/sizes
 .framework__row
   .framework__col-xs-12
     p Form can has the following elements:
+    h3 Blocks
+    h4 Without borders
+.row
+  .col-alt-11
+    .forms-label-row
+      form.forms
+        .form-block
+          .form-line
+            .forms-label-row
+              .show-grid__cube
+                | .form-block
+        .form-block
+          .form-line
+            .forms-label-row
+              .show-grid__cube
+                | .form-block
+    h4 With borders
+    form.forms
+      .form-block.form-block_default
+        .form-line
+          .forms-label-row
+            .show-grid__cube
+              | .form-block.form-block_default
+      .form-block.form-block_primary
+        .form-line
+          .forms-label-row
+            .show-grid__cube
+              | .form-block.form-block_primary
 include /pages/forms/tab-buttons
 include /pages/forms/inputs
 include /pages/forms/selects

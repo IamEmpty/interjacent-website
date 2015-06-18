@@ -6,21 +6,12 @@ html(lang= 'en')
   body.framework__body
     aside.framework__aside
       include /blocks/main-nav/main-nav
-    main.framework__main
-      header
-        .container.show-container
-          .framework__row
-            .framework__col-xs-12
-              h1.framework-logotype
-                a.framework-logotype__link(href= '#') Interjacent framework
-          .framework__row
-            .framework__col-xs-12
-              | Current version v0.0.3
-          .framework__row
-            .framework__col-xs-12
+    .framework__main-and-header-wrapper
+      include /blocks/header/header
 
-      .container.show-container
-        block content
+      main.framework__main
+        .container.show-container
+          block content
 
       footer.framework__footer
         include /blocks/footer/footer

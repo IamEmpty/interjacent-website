@@ -10,24 +10,24 @@ var gulp = require('gulp'),
   rename = require("gulp-rename"),
   ghPages = require('gulp-gh-pages'),
   replace = require('gulp-replace'),
-  fs = require('fs');
+  fs = require('fs'),
+  jadeInheritance = require('gulp-jade-inheritance'),
+  changed = require('gulp-changed'),
+  cached = require('gulp-cached');
+  gulpif = require('gulp-if'),
+  filter = require('gulp-filter'),
+  imagemin = require('gulp-imagemin');
 
 
 var paths = {
   jade: [ 'pages/index.jade' ],
-  jadeWatch: [ 'blocks/**/**/*.jade', 'pages/**/**/*.jade', 'includes/**/**/*.jade', 'layouts/**/**/*.jade', 'bower_components/**/**/*.jade' ],
-  stylus: [ 'stylesheets/main.styl' ],
+  jadeWatch: [ 'blocks/**/**/*.jade', 'pages/**/**/*.jade', 'includes/**/**/*.jade', 'layouts/**/**/*.jade', 'bower_components/interjacent/**/*.jade' ],
+  stylus: 'stylesheets/main.styl',
   stylusWatch: [ 'stylesheets/**/*.styl', 'blocks/**/**/*.styl', 'bower_components/**/**/**/*.styl' ],
-  copyCss: [ 'bower_components/normalize.css/normalize.css' ],
-  copyJs: [
-    'blocks/code/js/*.js'
-  ],
-  copyStatic: [
-    'static/**/**/**/*.{png,jpg,gif}',
-    'static/**/*.{eot,svg,ttf,woff,woff2}',
-    'bower_components/axshare-nav/**/*.{ttf,woff,eof,svg,eot}',
-    'bower_components/interjacent/static/**/**/icon-sprite.png'
-  ],
+  copyCss: 'bower_components/normalize.css/normalize.css',
+  copyJs: 'blocks/code/js/*.js',
+  copyStatic: 'blocks/header/**/*.{eot,woff,ttf,svg}',
+  sprite: 'bower_components/interjacent/static/**/**/icon-sprite.png',
   build: 'build/',
   dist: 'dist/'
 };
@@ -35,66 +35,86 @@ var paths = {
 
 // Compile .jade into .html for development
 gulp.task( 'html', function() {
-  gulp.src( paths.jade )
+  return gulp.src( paths.jade )
     .pipe(plumber())
+    //only pass unchanged *main* files and *all* the partials
+    .pipe(changed( paths.build, {extension: '.html'}))
+    //filter out unchanged partials, but it only works when watching
+    .pipe(gulpif(global.isWatching, cached('jade')))
+    //find files that depend on the files that have changed
+    .pipe(jadeInheritance({basedir: 'pages'}))
+    //filter out partials (folders and files starting with "_" )
+    .pipe(filter(function (file) {
+      return !/\/_/.test(file.path) && !/^_/.test(file.relative);
+    }))
+    //process jade templates
     .pipe(jade({
       basedir: './',
       pretty: true
     }))
-    .pipe(gulp.dest( paths.build ));
+    //save all the files
+    .pipe(gulp.dest( paths.build ))
+    .pipe(connect.reload());
 });
 
 // Compile .stylus into .css for development
 gulp.task( 'css', function() {
-  gulp.src( paths.stylus )
+  return gulp.src( paths.stylus )
     .pipe(plumber())
     .pipe(stylus({
       'include css': true
     }))
-    .pipe(gulp.dest( paths.build + 'css/' ));
+    .pipe(gulp.dest( paths.build + 'css/' ))
+    .pipe(connect.reload());
 });
 
 
 // Copy files into development build folder
-gulp.task( 'copy', [ 'copy-js', 'copy-css', 'copy-static' ]);
+gulp.task( 'copy', [ 'copy-js', 'copy-css', 'copy-static', 'copy-sprite' ]);
 
   // Copy javascript files into development build folder
   gulp.task( 'copy-js', function() {
-    gulp.src( paths.copyJs )
-      .pipe(plumber())
+    return gulp.src( paths.copyJs )
       .pipe(gulp.dest( paths.build + 'js/' ));
   });
 
   // Copy stylesheets files into development build folder
   gulp.task( 'copy-css', function() {
-    gulp.src( paths.copyCss )
+    return gulp.src( paths.copyCss )
       .pipe( gulp.dest( paths.build + 'css/' ));
   });
 
   // Copy files from static into development build folder
   gulp.task( 'copy-static', function() {
-    gulp.src( paths.copyStatic )
+    return gulp.src( paths.copyStatic )
       .pipe(gulp.dest( paths.build ));
+  });
+
+  // Copy sprite
+  gulp.task( 'copy-sprite', function() {
+    return gulp.src( paths.sprite )
+      .pipe(gulp.dest( paths.dist ));
   });
 
 
 // Create sprites
-gulp.task( 'sprite', function() {
+// gulp.task( 'sprite', function() {
 
-  var spriteData =
-    gulp.src( paths.sprite ) // path to images for sprite
-      .pipe(spritesmith({
-        imgName: 'table-sprite.png',
-        imgPath: '#{$img-path}sprites/table-sprite.png',
-        cssName: '_icon-sprite.scss',
-        cssVarMap: function (sprite) {
-          sprite.name = 'icon-' + sprite.name;
-        }
-      }));
+//   var spriteData =
+//     gulp.src( paths.sprite ) // path to images for sprite
+//       .pipe(spritesmith({
+//         imgName: 'table-sprite.png',
+//         imgPath: '#{$img-path}sprites/table-sprite.png',
+//         cssName: '_icon-sprite.scss',
+//         cssVarMap: function (sprite) {
+//           sprite.name = 'icon-' + sprite.name;
+//         }
+//       }))
+//       .pipe(imagemin());
 
-  spriteData.img.pipe(gulp.dest( 'static/img/sprites' ));     // path for images
-  spriteData.css.pipe(gulp.dest( 'stylesheets/partials' ));   // path for stylesheets
-});
+//   spriteData.img.pipe(gulp.dest( 'static/img/sprites' ));     // path for images
+//   spriteData.css.pipe(gulp.dest( 'stylesheets/partials' ));   // path for stylesheets
+// });
 
 
 // Perfomance optimization tasks
@@ -129,6 +149,13 @@ gulp.task( 'minify-css', function() {
     .pipe(gulp.dest( paths.dist + 'css/' ));
 });
 
+// Minify sprite
+gulp.task( 'minify-sprite', function() {
+  return gulp.src( paths.sprite )
+    .pipe(imagemin())
+    .pipe(gulp.dest( paths.dist ));
+});
+
 // Copy files into dist folder
 gulp.task( 'copy-to-dist', [ 'copy-js-to-dist', 'copy-static-to-dist' ]);
 
@@ -146,8 +173,12 @@ gulp.task( 'copy-to-dist', [ 'copy-js-to-dist', 'copy-static-to-dist' ]);
   });
 
 
+gulp.task('setWatch', function() {
+  global.isWatching = true;
+});
+
 // Rerun the task when a file changes
-gulp.task( 'watch', function() {
+gulp.task( 'watch', [ 'setWatch', 'html' ], function() {
   gulp.watch( paths.jadeWatch, [ 'html' ]);
   gulp.watch( paths.stylusWatch, [ 'css' ]);
   gulp.watch( paths.copyJs, [ 'copy-js' ]);
@@ -158,7 +189,8 @@ gulp.task( 'watch', function() {
 gulp.task( 'connect', function() {
   connect.server({
     root: paths.build,
-    port: 8889
+    port: 1889,
+    livereload: true
   });
 });
 
@@ -171,5 +203,5 @@ gulp.task( 'deploy', [ 'dist' ], function() {
 
 
 gulp.task( 'build', [ 'html', 'css', 'copy' ] );
-gulp.task( 'dist', [ 'html-min', 'minify-css', 'copy-to-dist' ] );
+gulp.task( 'dist', [ 'html-min', 'minify-css', 'copy-to-dist', 'minify-sprite' ] );
 gulp.task( 'default', [ 'build', 'connect', 'watch' ] );
