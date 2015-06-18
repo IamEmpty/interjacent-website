@@ -24,18 +24,18 @@
     "stylus": "^0.50.0"
   },
   "devDependencies": {
-    "gulp": "^3.8.11",
+    "gulp": "^3.9.0",
     "gulp-connect": "*",
-    "gulp-gh-pages": "^0.5.1",
+    "gulp-gh-pages": "^0.5.2",
     "gulp-html-replace": "^1.5.0",
     "gulp-jade": "*",
     "gulp-minify-css": "^1.1.6",
-    "gulp-minify-html": "^1.0.2",
+    "gulp-minify-html": "^1.0.3",
     "gulp-open": "*",
     "gulp-plumber": "*",
     "gulp-rename": "^1.2.2",
-    "gulp-stylus": "^2.0.1",
-    "gulp.spritesmith": "*",
+    "gulp-stylus": "^2.0.4",
+    "gulp.spritesmith": "^3.8.2",
     "nib": "^1.1.0"
   }
 }
