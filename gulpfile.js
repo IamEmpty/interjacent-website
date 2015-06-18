@@ -15,7 +15,8 @@ var gulp = require('gulp'),
   changed = require('gulp-changed'),
   cached = require('gulp-cached');
   gulpif = require('gulp-if'),
-  filter = require('gulp-filter');
+  filter = require('gulp-filter'),
+  imagemin = require('gulp-imagemin');
 
 
 var paths = {
@@ -25,10 +26,8 @@ var paths = {
   stylusWatch: [ 'stylesheets/**/*.styl', 'blocks/**/**/*.styl', 'bower_components/**/**/**/*.styl' ],
   copyCss: 'bower_components/normalize.css/normalize.css',
   copyJs: 'blocks/code/js/*.js',
-  copyStatic: [
-    'bower_components/interjacent/static/**/**/icon-sprite.png',
-    'blocks/header/**/*.{eot,woff,ttf,svg}'
-  ],
+  copyStatic: 'blocks/header/**/*.{eot,woff,ttf,svg}',
+  sprite: 'bower_components/interjacent/static/**/**/icon-sprite.png',
   build: 'build/',
   dist: 'dist/'
 };
@@ -71,7 +70,7 @@ gulp.task( 'css', function() {
 
 
 // Copy files into development build folder
-gulp.task( 'copy', [ 'copy-js', 'copy-css', 'copy-static' ]);
+gulp.task( 'copy', [ 'copy-js', 'copy-css', 'copy-static', 'copy-sprite' ]);
 
   // Copy javascript files into development build folder
   gulp.task( 'copy-js', function() {
@@ -91,24 +90,31 @@ gulp.task( 'copy', [ 'copy-js', 'copy-css', 'copy-static' ]);
       .pipe(gulp.dest( paths.build ));
   });
 
+  // Copy sprite
+  gulp.task( 'copy-sprite', function() {
+    return gulp.src( paths.sprite )
+      .pipe(gulp.dest( paths.dist ));
+  });
+
 
 // Create sprites
-gulp.task( 'sprite', function() {
+// gulp.task( 'sprite', function() {
 
-  var spriteData =
-    gulp.src( paths.sprite ) // path to images for sprite
-      .pipe(spritesmith({
-        imgName: 'table-sprite.png',
-        imgPath: '#{$img-path}sprites/table-sprite.png',
-        cssName: '_icon-sprite.scss',
-        cssVarMap: function (sprite) {
-          sprite.name = 'icon-' + sprite.name;
-        }
-      }));
+//   var spriteData =
+//     gulp.src( paths.sprite ) // path to images for sprite
+//       .pipe(spritesmith({
+//         imgName: 'table-sprite.png',
+//         imgPath: '#{$img-path}sprites/table-sprite.png',
+//         cssName: '_icon-sprite.scss',
+//         cssVarMap: function (sprite) {
+//           sprite.name = 'icon-' + sprite.name;
+//         }
+//       }))
+//       .pipe(imagemin());
 
-  spriteData.img.pipe(gulp.dest( 'static/img/sprites' ));     // path for images
-  spriteData.css.pipe(gulp.dest( 'stylesheets/partials' ));   // path for stylesheets
-});
+//   spriteData.img.pipe(gulp.dest( 'static/img/sprites' ));     // path for images
+//   spriteData.css.pipe(gulp.dest( 'stylesheets/partials' ));   // path for stylesheets
+// });
 
 
 // Perfomance optimization tasks
@@ -141,6 +147,13 @@ gulp.task( 'minify-css', function() {
     .pipe(minifyCss())
     .pipe(rename('main.min.css'))
     .pipe(gulp.dest( paths.dist + 'css/' ));
+});
+
+// Minify sprite
+gulp.task( 'minify-sprite', function() {
+  return gulp.src( paths.sprite )
+    .pipe(imagemin())
+    .pipe(gulp.dest( paths.dist ));
 });
 
 // Copy files into dist folder
@@ -190,5 +203,5 @@ gulp.task( 'deploy', [ 'dist' ], function() {
 
 
 gulp.task( 'build', [ 'html', 'css', 'copy' ] );
-gulp.task( 'dist', [ 'html-min', 'minify-css', 'copy-to-dist' ] );
+gulp.task( 'dist', [ 'html-min', 'minify-css', 'copy-to-dist', 'minify-sprite' ] );
 gulp.task( 'default', [ 'build', 'connect', 'watch' ] );

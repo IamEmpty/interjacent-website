@@ -1,5 +1,4 @@
-Website for interjacent front-end framework
-==========================
+# Website for interjacent front-end framework
 
 ## If you have no Node.js, Bower or Gulp
 If you have installed Node.js, Bower and Gulp go to step 2
