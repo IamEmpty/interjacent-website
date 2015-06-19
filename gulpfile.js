@@ -146,7 +146,7 @@ gulp.task( 'minify-css', function() {
       'include css': true
     }))
     .pipe(uncss({
-      html: 'dist/index.html'
+      html: [ './build/index.html' ]
     }))
     .pipe(minifyCss())
     .pipe(rename('main.min.css'))
