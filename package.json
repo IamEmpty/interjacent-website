@@ -41,6 +41,7 @@
     "gulp-open": "*",
     "gulp-plumber": "*",
     "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.3",
     "gulp-stylus": "^2.0.5",
     "gulp.spritesmith": "^3.8.2",
     "nib": "^1.1.0"

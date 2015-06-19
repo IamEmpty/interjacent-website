@@ -120,7 +120,7 @@ gulp.task( 'copy', [ 'copy-js', 'copy-css', 'copy-static', 'copy-sprite' ]);
 // Perfomance optimization tasks
 
 // Html minification
-gulp.task( 'html-min', function() {
+gulp.task( 'html-min', [ 'minify-css' ], function() {
   return gulp.src( paths.jade )
     .pipe(plumber())
     .pipe(jade({
