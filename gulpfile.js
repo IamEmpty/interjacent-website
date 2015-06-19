@@ -16,7 +16,8 @@ var gulp = require('gulp'),
   cached = require('gulp-cached');
   gulpif = require('gulp-if'),
   filter = require('gulp-filter'),
-  imagemin = require('gulp-imagemin');
+  imagemin = require('gulp-imagemin'),
+  uncss = require('gulp-uncss');
 
 
 var paths = {
@@ -143,6 +144,9 @@ gulp.task( 'minify-css', function() {
   return gulp.src( paths.stylus )
     .pipe(stylus({
       'include css': true
+    }))
+    .pipe(uncss({
+      html: 'dist/index.html'
     }))
     .pipe(minifyCss())
     .pipe(rename('main.min.css'))
