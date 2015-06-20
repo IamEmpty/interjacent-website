@@ -17,7 +17,8 @@ var gulp = require('gulp'),
   gulpif = require('gulp-if'),
   filter = require('gulp-filter'),
   imagemin = require('gulp-imagemin'),
-  uncss = require('gulp-uncss');
+  uncss = require('gulp-uncss'),
+  concat = require('gulp-concat');
 
 
 var paths = {
@@ -140,7 +141,14 @@ gulp.task( 'html-min', [ 'minify-css' ], function() {
 });
 
 // CSS minification
-gulp.task( 'minify-css', function() {
+gulp.task( 'minify-css', [ 'uncss' ], function() {
+  return gulp.src([ './dist/css/main.css', 'blocks/code/railscasts.css' ])
+    .pipe(minifyCss())
+    .pipe(concat('main.min.css'))
+    .pipe(gulp.dest( paths.dist + 'css/' ));
+});
+
+gulp.task( 'uncss', function() {
   return gulp.src( paths.stylus )
     .pipe(stylus({
       'include css': true
@@ -148,8 +156,6 @@ gulp.task( 'minify-css', function() {
     .pipe(uncss({
       html: [ './build/index.html' ]
     }))
-    .pipe(minifyCss())
-    .pipe(rename('main.min.css'))
     .pipe(gulp.dest( paths.dist + 'css/' ));
 });
 
