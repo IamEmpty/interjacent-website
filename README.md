@@ -22,10 +22,6 @@ If haven't install it
 ## Notes
 All styles use with normalize.css
 
-## Run Express
-
-    DEBUG=myapp npm start
-
 ## File structure
 
     blocks
