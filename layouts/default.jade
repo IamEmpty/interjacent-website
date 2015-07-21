@@ -7,11 +7,10 @@ html(lang= 'en')
     aside.framework__aside
       include /blocks/main-nav/main-nav
     .framework__main-and-header-wrapper
-      include /blocks/header/header
+      include /blocks/fixed-header/fixed-header
 
       main.framework__main
-        .container.show-container
-          block content
+        block content
 
       footer.framework__footer
         include /blocks/footer/footer
