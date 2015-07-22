@@ -8,7 +8,30 @@
         .header__city Набережные челны
         .address-of-terminals Адреса терминалов
       .header-col-15
-        .header__phone 8-800-100-8000
+        button.header__phone(type= 'button') 8-800-100-8000
+        .call-us
+          .call-us__heading Позвонить нам
+          .row
+            .col-md-7
+              .call-us__region.call-us-region
+                .call-us-region__from из Комсомольска-на-Амуре
+                .call-us-region__phone 8 800 100–8000
+              .call-us__region.call-us-region
+                .call-us-region__from из России
+                .call-us-region__phone 8 800 100–8000
+                .call-us-region__phone 0520
+            .col-md-5
+              .call-us__region.call-us-region
+                .call-us-region__from из Казахстана
+                .call-us-region__phone 8 800 100–8000
+              .call-us__region.call-us-region
+                .call-us-region__from из Белоруссии
+                .call-us-region__phone 8 800 100–8000
+          .row
+            .col-md-7
+              a.call-us__recall(href= '#') Перезвоните мне
+            .col-md-5
+              a.call-us__call-online(href= '#') Онлайн-звонок
         nav.header__nav.header-nav
           a.header-nav__item(href= '#') Форма связи
           a.header-nav__item(href= '#') Центр помощи

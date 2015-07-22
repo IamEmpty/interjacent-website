@@ -25,7 +25,7 @@ var paths = {
   jade: [ 'pages/index.jade' ],
   jadeWatch: [ 'blocks/**/**/*.jade', 'pages/**/**/*.jade', 'includes/**/**/*.jade', 'layouts/**/**/*.jade', 'bower_components/interjacent/**/*.jade' ],
   stylus: 'stylesheets/main.styl',
-  stylusWatch: [ 'stylesheets/**/*.styl', 'blocks/**/**/*.styl', 'bower_components/**/**/**/*.styl' ],
+  stylusWatch: [ 'stylesheets/**/*.styl', 'blocks/**/**/*.styl', 'bower_components/interjacent/blocks/**/*.styl' ],
   copyCss: 'bower_components/normalize.css/normalize.css',
   copyJs: 'blocks/code/js/*.js',
   copyStatic: 'blocks/header/**/*.{eot,woff,ttf,svg}',
