@@ -2,7 +2,7 @@
   "name": "interjacent-website",
   "version": "0.0.2",
   "authors": [
-    "IamEmpty <dustonroad@gmail.com>"
+    "IamEmpty"
   ],
   "description": "Website for interjacent front-end framework",
   "main": "README.md",
@@ -21,6 +21,6 @@
     "tests"
   ],
   "dependencies": {
-    "interjacent": "*"
+    "interjacent": ""
   }
 }
