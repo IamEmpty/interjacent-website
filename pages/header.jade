@@ -1,0 +1,47 @@
+.header-wrapper
+  .container
+    .header-row
+      .header-col-25
+        a.header__logotype(href= '#')
+          i.icon.icon-main-logotype
+      .header-col-20
+        .header__city Набережные челны
+        .address-of-terminals Адреса терминалов
+      .header-col-15
+        button.header__phone(type= 'button') 8-800-100-8000
+        .call-us
+          .call-us__heading Позвонить нам
+          .row
+            .col-md-7
+              .call-us__region.call-us-region
+                .call-us-region__from из Комсомольска-на-Амуре
+                .icon.icon-phone_small_gray.call-us__icon
+                .call-us-region__phone 8 800 100–8000
+              .call-us__region.call-us-region
+                .call-us-region__from из России
+                .icon.icon-phone_small_gray.call-us__icon
+                .call-us-region__phone 8 800 100–8000
+                .icon.icon-mobile-phone_small_gray.call-us__icon
+                .call-us-region__phone 0520
+            .col-md-5
+              .call-us__region.call-us-region
+                .call-us-region__from из Казахстана
+                .icon.icon-phone_small_gray.call-us__icon
+                .call-us-region__phone 8 800 100–8000
+              .call-us__region.call-us-region
+                .call-us-region__from из Белоруссии
+                .icon.icon-phone_small_gray.call-us__icon
+                .call-us-region__phone 8 800 100–8000
+          .row.call-us__links.call-us-links
+            .col-md-7
+              .icon.icon-incoming-call_small_gray.call-us__icon
+              a.call-us-links__item(href= '#') Перезвоните мне
+            .col-md-5
+              .icon.icon-headset_small_gray.call-us__icon
+              a.call-us-links__item.call-us-links__item_dashed(href= '#') Онлайн-звонок
+        nav.header__nav.header-nav
+          a.header-nav__item(href= '#') Форма связи
+          a.header-nav__item(href= '#') Центр помощи
+  .header__bottom
+    .container
+      include /bower_components/interjacent/blocks/top-menu/top-menu
