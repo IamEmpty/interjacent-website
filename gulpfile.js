@@ -4,8 +4,8 @@ var gulp = require('gulp'),
   jade = require('gulp-jade'),
   connect = require('gulp-connect'),
   stylus = require('gulp-stylus'),
-  minifyHTML = require('gulp-minify-html'),
-  minifyCss = require('gulp-minify-css'),
+  htmlmin = require('gulp-htmlmin'),
+  cssnano = require('gulp-cssnano'),
   htmlreplace = require('gulp-html-replace'),
   rename = require("gulp-rename"),
   ghPages = require('gulp-gh-pages'),
@@ -136,14 +136,14 @@ gulp.task( 'html-min', [ 'minify-css' ], function() {
       var style = fs.readFileSync('dist/css/main.min.css', 'utf8');
       return '<style>\n' + style + '\n</style>';
     }))
-    .pipe(minifyHTML())
+    .pipe(htmlmin())
     .pipe(gulp.dest( paths.dist ));
 });
 
 // CSS minification
 gulp.task( 'minify-css', [ 'uncss' ], function() {
   return gulp.src([ './dist/css/main.css', 'blocks/code/railscasts.css' ])
-    .pipe(minifyCss())
+    .pipe(cssnano())
     .pipe(concat('main.min.css'))
     .pipe(gulp.dest( paths.dist + 'css/' ));
 });
