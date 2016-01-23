@@ -9,3 +9,6 @@ bower_components
 build
 dist
 .publish
+
+# OS X
+.DS_Store
