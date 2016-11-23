@@ -2,7 +2,6 @@ const gulp = require('gulp'),
   fs = require('fs'),
   plugins = require('gulp-load-plugins')();
 
-
 const paths = {
   pug: [ 'pages/index.pug' ],
   pugWatch: [ 'blocks/**/**/*.pug', 'pages/**/**/*.pug', 'includes/**/**/*.pug', 'layouts/**/**/*.pug', 'bower_components/interjacent/**/*.pug' ],
@@ -12,17 +11,16 @@ const paths = {
   copyJs: 'blocks/code/js/*.js',
   copyStatic: 'blocks/header/**/*.{eot,woff,ttf,svg}',
   sprite: 'bower_components/interjacent/static/**/**/icon-sprite.png',
-  build: 'build/',
+  dev: '.tmp/',
   dist: 'dist/'
 };
-
 
 // Compile .jade into .html for development
 gulp.task( 'html', () =>
   gulp.src(paths.pug)
     .pipe(plugins.plumber())
     //only pass unchanged *main* files and *all* the partials
-    .pipe(plugins.changed( paths.build, {extension: '.html'}))
+    .pipe(plugins.changed( paths.dev, {extension: '.html'}))
     //filter out unchanged partials, but it only works when watching
     .pipe(plugins.if(global.isWatching, plugins.cached('pug')))
     //find files that depend on the files that have changed
@@ -37,7 +35,7 @@ gulp.task( 'html', () =>
       pretty: true
     }))
     //save all the files
-    .pipe(gulp.dest( paths.build ))
+    .pipe(gulp.dest( paths.dev ))
     .pipe(plugins.connect.reload())
 );
 
@@ -48,7 +46,7 @@ gulp.task( 'css', () =>
     .pipe(plugins.stylus({
       'include css': true
     }))
-    .pipe(gulp.dest(paths.build + 'css/'))
+    .pipe(gulp.dest(paths.dev + 'css/'))
     .pipe(plugins.connect.reload())
 );
 
@@ -58,19 +56,19 @@ gulp.task( 'css', () =>
 // Copy javascript files into development build folder
 gulp.task( 'copy-js', () =>
   gulp.src( paths.copyJs )
-    .pipe(gulp.dest( paths.build + 'js/' ))
+    .pipe(gulp.dest( paths.dev + 'js/' ))
 );
 
 // Copy stylesheets files into development build folder
 gulp.task( 'copy-css', () =>
   gulp.src( paths.copyCss )
-    .pipe( gulp.dest( paths.build + 'css/' ))
+    .pipe( gulp.dest( paths.dev + 'css/' ))
 );
 
 // Copy files from static into development build folder
 gulp.task( 'copy-static', () =>
-  gulp.src( paths.copyStatic )
-    .pipe(gulp.dest( paths.build ))
+  gulp.src(paths.copyStatic)
+    .pipe(gulp.dest(paths.dev))
 );
 
 // Copy sprite
@@ -111,7 +109,7 @@ gulp.task( 'uncss', () =>
       'include css': true
     }))
     .pipe(plugins.uncss({
-      html: [ './build/index.html' ]
+      html: [ '.tmp/index.html' ]
     }))
     .pipe(gulp.dest( paths.dist + 'css/' ))
 );
@@ -125,8 +123,8 @@ gulp.task( 'minify-css', gulp.series('uncss', () =>
 ));
 
 // Html minification
-gulp.task( 'html-min', gulp.series('minify-css', () =>
-  gulp.src( paths.jade )
+gulp.task('html-min', gulp.series('minify-css', () =>
+  gulp.src(paths.pug)
     .pipe(plugins.plumber())
     .pipe(plugins.pug({
       basedir: './'
@@ -182,13 +180,13 @@ gulp.task( 'watch', gulp.series('setWatch', 'html', function() {
 // Run web server
 gulp.task( 'connect', function() {
   plugins.connect.server({
-    root: paths.build,
+    root: paths.dev,
     port: 1889,
     livereload: true
   });
 });
 
-gulp.task('build', gulp.series('html', 'css', 'copy'));
+gulp.task('dev', gulp.series('html', 'css', 'copy'));
 gulp.task('dist', gulp.series('html-min', 'minify-css', 'copy-to-dist', 'minify-sprite'));
 
 // Deploy to GitHub pages
@@ -197,4 +195,4 @@ gulp.task('deploy', gulp.series('dist', () =>
     .pipe(plugins.ghPages())
 ));
 
-gulp.task('default', gulp.series('build', 'connect', 'watch'));
+gulp.task('default', gulp.series('dev', 'connect', 'watch'));
