@@ -8,21 +8,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/IamEmpty/interjacent-website.git"
+    "url": "git+https://github.com/pure-js/interjacent-website.git"
   },
   "keywords": [
-    "jade",
+    "pug",
     "stylus"
   ],
-  "author": "IamEmpty",
+  "author": "pure-js",
   "license": "MIT",
   "dependencies": {
-    "bower": "^1.7.2",
     "express": "^4.13.3",
+    "gulp-pug": "^3.1.0",
     "highlight.js": "^9.1.0",
-    "html": "0.0.10",
-    "jade": "^1.11.0",
-    "stylus": "^0.53.0"
+    "html": "1.0.0"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
@@ -30,17 +28,17 @@
     "gulp-cached": "^1.1.0",
     "gulp-changed": "^1.3.0",
     "gulp-concat": "^2.6.0",
-    "gulp-connect": "^2.3.1",
+    "gulp-connect": "^5.0.0",
     "gulp-cssnano": "^2.1.0",
-    "gulp-filter": "^3.0.1",
+    "gulp-filter": "^4.0.0",
     "gulp-gh-pages": "^0.5.4",
     "gulp-html-replace": "^1.5.5",
-    "gulp-htmlmin": "^1.3.0",
+    "gulp-htmlmin": "^3.0.0",
     "gulp-if": "^2.0.0",
-    "gulp-imagemin": "^2.4.0",
-    "gulp-jade": "^1.1.0",
+    "gulp-imagemin": "^3.1.1",
     "gulp-jade-inheritance": "^0.5.4",
-    "gulp-open": "^1.0.0",
+    "gulp-load-plugins": "^1.4.0",
+    "gulp-open": "^2.0.0",
     "gulp-plumber": "^1.0.1",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
@@ -50,7 +48,7 @@
     "nib": "^1.1.0"
   },
   "bugs": {
-    "url": "https://github.com/IamEmpty/interjacent-website/issues"
+    "url": "https://github.com/pure-js/interjacent-website/issues"
   },
-  "homepage": "https://iamempty.github.io/interjacent-website/"
+  "homepage": "https://pure-js.github.io/interjacent-website/"
 }

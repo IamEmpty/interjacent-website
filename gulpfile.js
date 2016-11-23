@@ -1,29 +1,11 @@
-var gulp = require('gulp'),
-  plumber = require('gulp-plumber'),
-  spritesmith = require('gulp.spritesmith'),
-  jade = require('gulp-jade'),
-  connect = require('gulp-connect'),
-  stylus = require('gulp-stylus'),
-  htmlmin = require('gulp-htmlmin'),
-  cssnano = require('gulp-cssnano'),
-  htmlreplace = require('gulp-html-replace'),
-  rename = require("gulp-rename"),
-  ghPages = require('gulp-gh-pages'),
-  replace = require('gulp-replace'),
+const gulp = require('gulp'),
   fs = require('fs'),
-  jadeInheritance = require('gulp-jade-inheritance'),
-  changed = require('gulp-changed'),
-  cached = require('gulp-cached');
-  gulpif = require('gulp-if'),
-  filter = require('gulp-filter'),
-  imagemin = require('gulp-imagemin'),
-  uncss = require('gulp-uncss'),
-  concat = require('gulp-concat');
+  plugins = require('gulp-load-plugins')();
 
 
-var paths = {
-  jade: [ 'pages/index.jade' ],
-  jadeWatch: [ 'blocks/**/**/*.jade', 'pages/**/**/*.jade', 'includes/**/**/*.jade', 'layouts/**/**/*.jade', 'bower_components/interjacent/**/*.jade' ],
+const paths = {
+  pug: [ 'pages/index.pug' ],
+  pugWatch: [ 'blocks/**/**/*.pug', 'pages/**/**/*.pug', 'includes/**/**/*.pug', 'layouts/**/**/*.pug', 'bower_components/interjacent/**/*.pug' ],
   stylus: 'stylesheets/main.styl',
   stylusWatch: [ 'stylesheets/**/*.styl', 'blocks/**/**/*.styl', 'bower_components/interjacent/blocks/**/*.styl' ],
   copyCss: 'bower_components/normalize.css/normalize.css',
@@ -38,19 +20,19 @@ var paths = {
 // Compile .jade into .html for development
 gulp.task( 'html', function() {
   return gulp.src( paths.jade )
-    .pipe(plumber())
+    .pipe(plugins.plumber())
     //only pass unchanged *main* files and *all* the partials
-    .pipe(changed( paths.build, {extension: '.html'}))
+    .pipe(plugins.changed( paths.build, {extension: '.html'}))
     //filter out unchanged partials, but it only works when watching
-    .pipe(gulpif(global.isWatching, cached('jade')))
+    .pipe(plugins.if(global.isWatching, cached('pug')))
     //find files that depend on the files that have changed
-    .pipe(jadeInheritance({basedir: 'pages'}))
+    .pipe(plugins.jadeInheritance({basedir: 'pages'}))
     //filter out partials (folders and files starting with "_" )
-    .pipe(filter(function (file) {
+    .pipe(plugins.filter(function (file) {
       return !/\/_/.test(file.path) && !/^_/.test(file.relative);
     }))
     //process jade templates
-    .pipe(jade({
+    .pipe(plugins.pug({
       basedir: './',
       pretty: true
     }))
@@ -62,8 +44,8 @@ gulp.task( 'html', function() {
 // Compile .stylus into .css for development
 gulp.task( 'css', function() {
   return gulp.src( paths.stylus )
-    .pipe(plumber())
-    .pipe(stylus({
+    .pipe(plugins.plumber())
+    .pipe(plugins.stylus({
       'include css': true
     }))
     .pipe(gulp.dest( paths.build + 'css/' ))
@@ -124,36 +106,36 @@ gulp.task( 'copy', [ 'copy-js', 'copy-css', 'copy-static', 'copy-sprite' ]);
 // Html minification
 gulp.task( 'html-min', [ 'minify-css' ], function() {
   return gulp.src( paths.jade )
-    .pipe(plumber())
-    .pipe(jade({
+    .pipe(plugins.plumber())
+    .pipe(plugins.pug({
       basedir: './'
     }))
-    .pipe(htmlreplace({
+    .pipe(plugins.htmlReplace({
       'css': 'css/main.min.css'
     }))
     // Css from file to inline
-    .pipe(replace(/<link rel="stylesheet" href="css\/main.min.css">/, function(s) {
+    .pipe(plugins.replace(/<link rel="stylesheet" href="css\/main.min.css">/, function(s) {
       var style = fs.readFileSync('dist/css/main.min.css', 'utf8');
       return '<style>\n' + style + '\n</style>';
     }))
-    .pipe(htmlmin())
+    .pipe(plugins.htmlmin())
     .pipe(gulp.dest( paths.dist ));
 });
 
 // CSS minification
 gulp.task( 'minify-css', [ 'uncss' ], function() {
   return gulp.src([ './dist/css/main.css', 'blocks/code/railscasts.css' ])
-    .pipe(cssnano())
-    .pipe(concat('main.min.css'))
+    .pipe(plugins.cssnano())
+    .pipe(plugins.concat('main.min.css'))
     .pipe(gulp.dest( paths.dist + 'css/' ));
 });
 
 gulp.task( 'uncss', function() {
   return gulp.src( paths.stylus )
-    .pipe(stylus({
+    .pipe(plugins.stylus({
       'include css': true
     }))
-    .pipe(uncss({
+    .pipe(plugins.uncss({
       html: [ './build/index.html' ]
     }))
     .pipe(gulp.dest( paths.dist + 'css/' ));
@@ -162,7 +144,7 @@ gulp.task( 'uncss', function() {
 // Minify sprite
 gulp.task( 'minify-sprite', function() {
   return gulp.src( paths.sprite )
-    .pipe(imagemin())
+    .pipe(plugins.imagemin())
     .pipe(gulp.dest( paths.dist ));
 });
 
@@ -172,7 +154,7 @@ gulp.task( 'copy-to-dist', [ 'copy-js-to-dist', 'copy-static-to-dist' ]);
   // Copy javascript files into development build folder
   gulp.task( 'copy-js-to-dist', function() {
     gulp.src( paths.copyJs )
-      .pipe(plumber())
+      .pipe(plugins.plumber())
       .pipe(gulp.dest( paths.dist + 'js/' ));
   });
 
@@ -189,7 +171,7 @@ gulp.task('setWatch', function() {
 
 // Rerun the task when a file changes
 gulp.task( 'watch', [ 'setWatch', 'html' ], function() {
-  gulp.watch( paths.jadeWatch, [ 'html' ]);
+  gulp.watch( paths.pugWatch, [ 'html' ]);
   gulp.watch( paths.stylusWatch, [ 'css' ]);
   gulp.watch( paths.copyJs, [ 'copy-js' ]);
 });
@@ -208,7 +190,7 @@ gulp.task( 'connect', function() {
 // Deploy to GitHub pages
 gulp.task( 'deploy', [ 'dist' ], function() {
   return gulp.src( paths.dist + '/**/*.*' )
-    .pipe(ghPages());
+    .pipe(plugins.ghPages());
 });
 
 
