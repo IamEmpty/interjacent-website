@@ -9,10 +9,10 @@
   "keywords": [
     "pug",
     "stylus",
-    "Js"
+    "js"
   ],
   "license": "MIT",
-  "homepage": "interjacent-website.com",
+  "homepage": "https://pure-js.github.io/interjacent-website/",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -21,6 +21,6 @@
     "tests"
   ],
   "dependencies": {
-    "interjacent": ""
+    "interjacent": "^0.0.6"
   }
 }
