@@ -1,8 +1,7 @@
 language: node_js
 node_js:
-  - "4.1"
-  - "4.0"
+  - "6.0"
+  - "7.8"
 before_script:
-  - npm install -g gulp
   - bower install
 script: gulp

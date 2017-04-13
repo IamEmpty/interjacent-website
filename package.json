@@ -4,7 +4,8 @@
   "description": "Website for interjacent front-end framework",
   "main": "README.md",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run csslint",
+    "csslint": "csslint dist/css/main.css"
   },
   "repository": {
     "type": "git",
