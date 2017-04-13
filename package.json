@@ -4,6 +4,8 @@
   "description": "Website for interjacent front-end framework",
   "main": "README.md",
   "scripts": {
+    "start": "gulp dist",
+    "postinstall": "bower install",
     "test": "npm run csslint",
     "csslint": "csslint dist/css/main.css"
   },
@@ -27,11 +29,11 @@
     "gulp": "gulpjs/gulp.git#4.0",
     "gulp-base64": "^0.1.3",
     "gulp-cached": "^1.1.0",
-    "gulp-changed": "^1.3.0",
+    "gulp-changed": "^2.0.0",
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^5.0.0",
     "gulp-cssnano": "^2.1.0",
-    "gulp-filter": "^4.0.0",
+    "gulp-filter": "^5.0.0",
     "gulp-gh-pages": "^0.5.4",
     "gulp-html-replace": "^1.5.5",
     "gulp-htmlmin": "^3.0.0",
