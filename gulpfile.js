@@ -103,7 +103,7 @@ gulp.task('copy', gulp.parallel('copy-js', 'copy-css', 'copy-static', 'copy-spri
 
 // Perfomance optimization tasks
 
-gulp.task( 'uncss', () =>
+gulp.task( 'uncss', gulp.series('html', () =>
   gulp.src( paths.stylus )
     .pipe(plugins.stylus({
       'include css': true
@@ -112,7 +112,7 @@ gulp.task( 'uncss', () =>
       html: [ '.tmp/index.html' ]
     }))
     .pipe(gulp.dest( paths.dist + 'css/' ))
-);
+));
 
 // CSS minification
 gulp.task( 'minify-css', gulp.series('uncss', () =>

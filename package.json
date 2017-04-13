@@ -26,7 +26,7 @@
     "html": "1.0.0"
   },
   "devDependencies": {
-    "gulp": "gulpjs/gulp.git#4.0",
+    "gulp": "github:gulpjs/gulp#4.0",
     "gulp-base64": "^0.1.3",
     "gulp-cached": "^1.1.0",
     "gulp-changed": "^2.0.0",
