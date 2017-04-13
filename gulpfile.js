@@ -15,9 +15,9 @@ const paths = {
   dist: 'dist/'
 };
 
-// Compile .jade into .html for development
-gulp.task( 'html', () =>
-  gulp.src(paths.pug)
+// Compile .pug into .html for development
+function html() {
+  return gulp.src(paths.pug)
     .pipe(plugins.plumber())
     //only pass unchanged *main* files and *all* the partials
     .pipe(plugins.changed( paths.dev, {extension: '.html'}))
@@ -37,33 +37,33 @@ gulp.task( 'html', () =>
     //save all the files
     .pipe(gulp.dest( paths.dev ))
     .pipe(plugins.connect.reload())
-);
+}
 
 // Compile .stylus into .css for development
-gulp.task( 'css', () =>
-  gulp.src(paths.stylus)
+function css() {
+  return gulp.src(paths.stylus)
     .pipe(plugins.plumber())
     .pipe(plugins.stylus({
       'include css': true
     }))
     .pipe(gulp.dest(paths.dev + 'css/'))
     .pipe(plugins.connect.reload())
-);
+}
 
 
 
 
 // Copy javascript files into development build folder
-gulp.task( 'copy-js', () =>
-  gulp.src( paths.copyJs )
+function copyJs() {
+  return gulp.src( paths.copyJs )
     .pipe(gulp.dest( paths.dev + 'js/' ))
-);
+}
 
 // Copy stylesheets files into development build folder
-gulp.task( 'copy-css', () =>
-  gulp.src( paths.copyCss )
+function copyCss() {
+  return gulp.src( paths.copyCss )
     .pipe( gulp.dest( paths.dev + 'css/' ))
-);
+}
 
 // Copy files from static into development build folder
 gulp.task( 'copy-static', () =>
@@ -78,7 +78,7 @@ gulp.task( 'copy-sprite', () =>
 );
 
 // Copy files into development build folder
-gulp.task('copy', gulp.parallel('copy-js', 'copy-css', 'copy-static', 'copy-sprite'));
+gulp.task('copy', gulp.parallel(copyJs, copyCss, 'copy-static', 'copy-sprite'));
 
 
 // Create sprites
@@ -103,7 +103,7 @@ gulp.task('copy', gulp.parallel('copy-js', 'copy-css', 'copy-static', 'copy-spri
 
 // Perfomance optimization tasks
 
-gulp.task( 'uncss', gulp.series('html', () =>
+gulp.task( 'uncss', gulp.series(html, () =>
   gulp.src( paths.stylus )
     .pipe(plugins.stylus({
       'include css': true
@@ -171,10 +171,10 @@ gulp.task('setWatch', function() {
 });
 
 // Rerun the task when a file changes
-gulp.task( 'watch', gulp.series('setWatch', 'html', function() {
+gulp.task( 'watch', gulp.series('setWatch', html, function() {
   gulp.watch( paths.pugWatch, [ 'html' ]);
   gulp.watch( paths.stylusWatch, [ 'css' ]);
-  gulp.watch( paths.copyJs, [ 'copy-js' ]);
+  gulp.watch( paths.copyJs, [ copyJs ]);
 }));
 
 // Run web server
@@ -186,7 +186,7 @@ gulp.task( 'connect', function() {
   });
 });
 
-gulp.task('dev', gulp.series('html', 'css', 'copy'));
+gulp.task('dev', gulp.series(html, css, 'copy'));
 gulp.task('dist', gulp.series('html-min', 'minify-css', 'copy-to-dist', 'minify-sprite'));
 
 // Deploy to GitHub pages

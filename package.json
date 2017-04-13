@@ -5,6 +5,7 @@
   "main": "README.md",
   "scripts": {
     "start": "gulp dist",
+    "dev": "gulp dev",
     "postinstall": "bower install",
     "test": "npm run csslint",
     "csslint": "csslint dist/css/main.css"
