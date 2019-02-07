@@ -1,4 +1,4 @@
-# Website for interjacent Front-end framework
+# Website for interjacent Front-end library
 
 ## Running
 
